@@ -1,0 +1,28 @@
+<div class="container">
+    <form>
+    	<div>
+	      <div class="form-group">
+	        <label for="sender-num">Номер</label>
+	        <input *ngFor="let num of sender.cardNumber; let i=index" name = "sender-num" id = 'sender-num-{{i}}' class="form-control" [(value)] = "sender.cardNumber[i]" required>
+	      </div>
+	      <div class="form-group">
+	        <label for="fullName">ФИО</label>
+	        <input type = "text" id = "fullName" class="form-control" [(value)] = "sender.fullName" required>
+	        <label for="valid-until">Активна до:</label>
+	        <input type = "number" name = "valid-until" id = "month" class="form-control" [(value)] = "sender.month" required>
+	        <input type = "number" name = "valid-until" id = "year" class="form-control" [(value)] = "sender.year" required>
+	      </div>
+	    </div>
+	    <div>
+	      <div class="form-group">
+	        <label for="reciever-num">Номер</label>
+	         <input *ngFor="let num of reciever.cardNumber; let i=index" name = "reciever-num" id = 'reciever-num-{{i}}' class="form-control" [(value)] = "reciever.cardNumber[i]" required>
+	      </div>
+	    </div>
+	    <div>
+	        <input type = "text" id = "summ" class="form-control" placeholder = "сумма" [(value)] = "summ" required>
+      		<button type="submit" class="btn btn-success">Submit</button>
+      	</div>
+
+    </form>
+</div>
