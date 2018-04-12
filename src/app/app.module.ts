@@ -6,11 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RemittanceFormComponent } from './remittance-form/remittance-form.component';
+import { RemittanceHistoryComponent } from './remittance-history/remittance-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RemittanceFormComponent
+    RemittanceFormComponent,
+    RemittanceHistoryComponent
   ],
   imports: [
     BrowserModule,
