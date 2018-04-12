@@ -13,11 +13,11 @@ export class RemittanceFormComponent implements OnInit {
 	optionAr: number[];
 	yearSince: number;
 	monthSince: number;
-	remittanceData: {};
+	remittanceData: RemittanceData;
 
 	constructor(private fb: FormBuilder, private dataService: RemittanceDataService) {
 		var date = new Date();
-		this.optionAr = Array(12).fill().map((x,i)=>i);	
+		this.optionAr = Array(12).fill(1).map((x,i)=>i);	
 		this.monthSince = date.getMonth();	
 		this.yearSince = Number(String(date.getFullYear()).slice(-2)); 
 		this.createForm()
@@ -31,7 +31,7 @@ export class RemittanceFormComponent implements OnInit {
 				num5_8: ['2', Validators.required ],
 				num9_12: ['3', Validators.required ],
 				num13_16: ['4', Validators.required ]
-			})
+			}),
 	      		fullName: ['5', Validators.required ],
 	      		validateUntil: this.fb.group({
 	      			month:[this.monthSince, Validators.required ],
@@ -52,13 +52,6 @@ export class RemittanceFormComponent implements OnInit {
 
 	}
 
-	setCardNumber() {
-		console.log(Array(4).fill())
-	  const numFGs = Array(4).fill().map(num => this.fb.group(num));
-	  const numFormArray = this.fb.array(numFGs);
-	  this.remittanceForm.setControl('secretLairs', numFormArray);
-	}
-
 	ngOnChanges() {
   		this.rebuildForm();
 	}
@@ -69,7 +62,7 @@ export class RemittanceFormComponent implements OnInit {
 	  /*this.rebuildForm();*/
 	}
 
-	prepareSendRemmitance(){
+	prepareSendRemmitance(): RemittanceData{
 		const model = this.remittanceForm.value;
 		const sData = model.sender;
 		const rData = model.reciever;

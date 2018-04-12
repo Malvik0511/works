@@ -14,7 +14,7 @@ export class Sender{
 
 
 export class RemittanceData{
-	constructor(public sender: Sender, public reciever: Reciever, summ: Number){
+	constructor(public sender: Sender, public reciever: Reciever, public summ: number){
 	}
 }
 

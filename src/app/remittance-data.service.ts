@@ -1,23 +1,19 @@
-import { Injectable } from '@angular/core';
-import { Sender } from './sender';
-import { Reciever, Sender, RemittanceData } from '../data-model';
+import { Injectable } from '@angular/core';;
+import { Reciever, Sender, RemittanceData } from './data-model';
 
 
 @Injectable()
 export class RemittanceDataService {
-	storageName = "remittance-storage-"
-	saveIndex = '0'
-	localStorageKeys = []
+	storageName:string;
+	saveIndex:number
+	localStorageKeys:string[]
 
-	private defaultSender:Sender = new Sender(["1", "2", "3", "5"],"","","")
+  constructor() {
+  	this.storageName = "remittance-storage-";
+	this.saveIndex = 0;
+	this.localStorageKeys = [];
 
-	private defaultReciever:Reciever = {
-		cardNumber:["1", "2", "3", "4"]
-	}
-	private defaultSum:number = 0;
-
-
-  constructor() { }
+   }
 
 
   private updateLocalStorageKeys(): void{
@@ -25,7 +21,7 @@ export class RemittanceDataService {
   		let key = this.storageName + this.saveIndex
   		while (localStorage.getItem(key)){
   			this.localStorageKeys.push(key)
-  			this.saveIndex++;
+  			this.saveIndex = this.saveIndex + 1;
   			key = this.storageName + this.saveIndex;
   			console.log("Восстановление ключей")
   		}
@@ -33,24 +29,32 @@ export class RemittanceDataService {
   }
 
   save(data: RemittanceData):void {
-  		this.updateLocalStorageKeys();
-  		let key = this.storageName + this.saveIndex
-  		this.localStorageKeys.push(key);
-  		localStorage.setItem(key, data)
-  		console.log(`Создано хранилище ${key}`)
-  		this.saveIndex++;
-  		console.log(this.localStorageKeys)
+  	this.updateLocalStorageKeys();
+  	let note = this.convertRemittanceDataToString(data)
+  	let key = this.storageName + this.saveIndex
+  	this.localStorageKeys.push(key);
+  	localStorage.setItem(key, note)
+  	console.log(`Создано хранилище ${key}`)
+  	this.saveIndex++;
+  }
+
+  convertRemittanceDataToString(data: RemittanceData):string{
+  	return JSON.stringify(data);
+  }
+
+  convertStringToRemittanceData(data: string):RemittanceData{
+  	return JSON.parse(data);
   }
 
   getNote(key:string):RemittanceData{
   	if (!localStorage.getItem(key)) throw Error(`There is no Note in ${key}`)
   	console.log(`Отдана информация из хранилища ${key}`)
-  	return localStorage.getItem(key);
+  	return this.convertStringToRemittanceData(localStorage.getItem(key)) ;
   }
 
   getHistory():RemittanceData[]{
   	this.updateLocalStorageKeys();
-  	return this.localStorageKeys.map(key =>  getNote(key))
+  	return this.localStorageKeys.map(key =>  this.getNote(key))
   }
 
   clearHistory():void{
@@ -72,17 +76,5 @@ export class RemittanceDataService {
   		this.saveIndex++;
   }
 */
-
-  getDefaultSender (): Sender {
-  	return this.defaultSender;
-  }
-
-  getDefaultReciever (): Reciever {
-  	return this.defaultReciever;
-  }
-
-  getDefaultSum (): Number {
-  	return this.defaultSum;
-  }
 
 }
