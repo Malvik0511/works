@@ -1,0 +1,44 @@
+<h2>Осуществить перевод</h2>
+<form [formGroup]="remittanceForm" (ngSubmit)="onSubmit()">  
+	<div formGroupName="sender" class="well well-lg card" >
+		<h4>Карта платильщика</h4>
+		<div class="form-group cardNumber" formGroupName="cardNumber">
+			<label class="center-block">Номер:</label>
+		    <input class="form-control" formControlName="num1_4">
+		    <input class="form-control" formControlName="num5_8">
+		    <input class="form-control" formControlName="num9_12">
+		    <input class="form-control" formControlName="num13_16">
+		</div>
+		<div>
+		  <div class="form-group fullName">
+		    <label class="center-block">ФИО держателя:</label>
+		      <input class="form-control" formControlName="fullName">
+		  </div>		
+		<div class="form-group" formGroupName = "validateUntil" class = "validateUntil">
+		<label class="center-block">Активна до:</label>
+			    <select class="form-control" formControlName="month">
+			      	<option *ngFor = "let month of optionAr" [value] = "month">{{(month < 9 )? "0" + (month + 1) : month + 1}}</option>
+			    </select>
+			    <select class="form-control" formControlName = "year">
+			      	<option *ngFor = "let month of optionAr" [value] = "yearSince + month">{{yearSince + month}}</option>
+			    </select>
+			</div>
+		</div>
+	</div>
+	<div formGroupName= "reciever" class="well well-lg card">
+		<h4>Карта получателя</h4>
+		<div class="form-group" formGroupName="cardNumber" class="cardNumber">
+		<label class="center-block">Номер:</label>
+		    <input class="form-control" formControlName="num1_4">
+		    <input class="form-control" formControlName="num5_8">
+		    <input class="form-control" formControlName="num9_12">
+		    <input class="form-control" formControlName="num13_16">
+		</div>
+	</div>
+	<div>
+	  <div class="form-group" class="well well-lg">
+	    <input class="form-control" formControlName="summ" placeholder="сумма">
+	  </div>
+	  <button type = "submit" [disabled]="!remittanceForm.valid">Перевести</button>
+	</div>
+</form>

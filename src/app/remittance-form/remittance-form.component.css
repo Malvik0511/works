@@ -1,0 +1,28 @@
+.card{
+	display: inline-block;
+	width:45%;
+}
+
+.cardNumber input{
+	display:inline-block;
+	width:24%;
+	min-width: 60px;
+}
+
+.fullName{
+	display: inline-block;
+	width:50%;
+
+}
+
+.validateUntil{
+	display: inline-block;
+	width:47%;
+	float:right;
+}
+
+.validateUntil select{
+	display: inline-block;
+	width:48%;
+}
+

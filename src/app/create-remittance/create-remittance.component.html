@@ -1,27 +1,79 @@
 <div class="container">
-    <form>
+    <form (ngSubmit)="onSubmit()" #remittanceForm ="ngForm">
     	<div>
 	      <div class="form-group">
-	        <label for="sender-num">Номер</label>
-	        <input *ngFor="let num of sender.cardNumber; let i=index" name = "sender-num" id = 'sender-num-{{i}}' class="form-control" [(value)] = "sender.cardNumber[i]" required>
+	        <label>Номер</label>
+	        <input name = "sender-num-0" id = 'sender-num-0' class="form-control" [(ngModel)] = "sender.cardNumber[0]" #snum0 = "ngModel" required
+	        pattern="\d{4}" maxlength = "4">
+	        <div [hidden]="snum0.valid || snum0.pristine"
+				class="alert alert-danger">
+  				Num0 is required
+			</div>
+	        <input name = "sender-num-1" id = 'sender-num-1' class="form-control" [(ngModel)] = "sender.cardNumber[1]" #snum1 = "ngModel" required>
+	        <div [hidden]="snum1.valid || snum1.pristine"
+				class="alert alert-danger">
+  				Num is required
+			</div>
+	        <input name = "sender-num-2" id = 'sender-num-2' class="form-control" [(ngModel)] = "sender.cardNumber[2]" #snum2 = "ngModel" required>
+	        <div [hidden]="snum2.valid || snum2.pristine"
+				class="alert alert-danger">
+  				Num is required
+			</div>
+	        <input name = "sender-num-3" id = 'sender-num-3' class="form-control" [(ngModel)] = "sender.cardNumber[3]" #snum3 = "ngModel" required>
+	        <div [hidden]="snum3.valid || snum3.pristine"
+				class="alert alert-danger">
+  				Num is required
+			</div>
 	      </div>
 	      <div class="form-group">
 	        <label for="fullName">ФИО</label>
-	        <input type = "text" id = "fullName" class="form-control" [(value)] = "sender.fullName" required>
+	        <input type = "text" id = "fullName" class="form-control" [(ngModel)] = "sender.fullName" name = "fullName" #fullName = "ngModel" required>
+	        <div [hidden]="fullName.valid || fullName.pristine"
+				class="alert alert-danger">
+  				Name is required
+			</div>
 	        <label for="valid-until">Активна до:</label>
-	        <input type = "number" name = "valid-until" id = "month" class="form-control" [(value)] = "sender.month" required>
-	        <input type = "number" name = "valid-until" id = "year" class="form-control" [(value)] = "sender.year" required>
+	        <input type = "number" name = "valid-until" id = "month" class="form-control" [(ngModel)] = "sender.month" name = "month" #month = "ngModel" required>
+	        <div [hidden]="month.valid || month.pristine"
+				class="alert alert-danger">
+  				Month is required
+			</div>
+	        <input type = "number" name = "valid-until" id = "year" class="form-control" [(ngModel)] = "sender.year" name = "year" #year = "ngModel" required>
+	        <div [hidden]="year.valid || year.pristine"
+				class="alert alert-danger">
+  				Year is required
+			</div>
 	      </div>
 	    </div>
 	    <div>
 	      <div class="form-group">
-	        <label for="reciever-num">Номер</label>
-	         <input *ngFor="let num of reciever.cardNumber; let i=index" name = "reciever-num" id = 'reciever-num-{{i}}' class="form-control" [(value)] = "reciever.cardNumber[i]" required>
+	        <label>Номер</label>
+	        <input name = "reciever-num-0" id = 'reciever-num-0' class="form-control" [(ngModel)] = "reciever.cardNumber[0]" #rnum0 = "ngModel" required>
+	        <div [hidden]="rnum0.valid || rnum0.pristine"
+				class="alert alert-danger">
+  				Num is required
+			</div>
+	        <input name = "reciever-num-1" id = 'reciever-num-1' class="form-control" [(ngModel)] = "reciever.cardNumber[1]" #rnum1 = "ngModel" required>
+	        <div [hidden]="rnum1.valid || rnum1.pristine"
+				class="alert alert-danger">
+  				Num is required
+			</div>
+	        <input name = "reciever-num-2" id = 'reciever-num-2' class="form-control" [(ngModel)] = "reciever.cardNumber[2]" #rnum2 = "ngModel" required>
+	        <div [hidden]="rnum2.valid || rnum2.pristine"
+				class="alert alert-danger">
+  				Num is required
+			</div>
+	        <input name = "reciever-num-3" id = 'reciever-num-3' class="form-control" [(ngModel)] = "reciever.cardNumber[3]" #rnum3 = "ngModel" required>
+	        <div [hidden]="rnum3.valid || rnum3.pristine"
+				class="alert alert-danger">
+  				Num is required
+			</div>
 	      </div>
 	    </div>
 	    <div>
-	        <input type = "text" id = "summ" class="form-control" placeholder = "сумма" [(value)] = "summ" required>
-      		<button type="submit" class="btn btn-success">Submit</button>
+	        <input type = "text" id = "summ" class="form-control" placeholder = "сумма" [(ngModel)] = "summ" name = "summ" required>
+      		<button type="submit" class="btn btn-success" 
+      		[disabled]="!remittanceForm.form.valid">Submit</button>
       	</div>
 
     </form>
