@@ -5,17 +5,17 @@ import { Reciever, Sender, RemittanceData } from './data-model';
 @Injectable()
 export class RemittanceDataService {
 	storageName:string;
-	saveIndex:number
-	localStorageKeys:string[]
+	//saveIndex:number
+	//localStorageKeys:string[]
 
   constructor() {
   	this.storageName = "remittance-storage-";
-	this.saveIndex = 0;
-	this.localStorageKeys = [];
+	//this.saveIndex = 0;
+	//this.localStorageKeys = [];
 
    }
 
-
+/*
   private updateLocalStorageKeys(): void{
   	if (!this.localStorageKeys.length){
   		let key = this.storageName + this.saveIndex
@@ -27,54 +27,45 @@ export class RemittanceDataService {
   		}
   	}
   }
+  */
 
   save(data: RemittanceData):void {
-  	this.updateLocalStorageKeys();
-  	let note = this.convertRemittanceDataToString(data)
-  	let key = this.storageName + this.saveIndex
-  	this.localStorageKeys.push(key);
-  	localStorage.setItem(key, note)
-  	console.log(`Создано хранилище ${key}`)
-  	this.saveIndex++;
-  }
-
-  convertRemittanceDataToString(data: RemittanceData):string{
-  	return JSON.stringify(data);
+  	let key = this.storageName
+  	let storage = JSON.parse(localStorage.getItem(key))||[];
+  	let newStorage = [...storage, data]
+  	let index = newStorage.length;
+  	console.log(`В хранилище ${key} добавлена запись №${index}` )
+  	localStorage.setItem(key, JSON.stringify(newStorage));
   }
 
   convertStringToRemittanceData(data: string):RemittanceData{
   	return JSON.parse(data);
   }
 
-  getNote(key:string):RemittanceData{
-  	if (!localStorage.getItem(key)) throw Error(`There is no Note in ${key}`)
-  	console.log(`Отдана информация из хранилища ${key}`)
-  	return this.convertStringToRemittanceData(localStorage.getItem(key)) ;
+  getNote(id:number):RemittanceData{
+  	let key = this.storageName;
+  	let storage = JSON.parse(localStorage.getItem(key));
+  	console.log(`Из хранилища ${key} отдана запись №${id}`)
+  	return storage[id] as RemittanceData;
   }
 
   getHistory():RemittanceData[]{
-  	this.updateLocalStorageKeys();
-  	return this.localStorageKeys.map(key =>  this.getNote(key))
+  	let key = this.storageName;
+  	console.log(`Из хранилища ${key} отдана вся история`)
+  	return JSON.parse(localStorage.getItem(key)) as RemittanceData[]
+  }
+
+  clearNote(id: number):void{
+  	let key = this.storageName;
+  	let storage = JSON.parse(localStorage.getItem(key));
+  	let newStorage = [...storage.slice(0,id), ...storage.slice(id + 1)]
+  	console.log(`Из хранилища ${key} удалена запись ${id}`)
+  	localStorage.setItem(key, JSON.stringify(newStorage));
   }
 
   clearHistory():void{
   	localStorage.clear();
+  	console.log("Хранилище очищено")
   }
-
-
-/*
-
-  save(data: RemittanceData):void {
-  		let storage = this.storageName + this.saveIndex
-  		while (localStorage.getItem(storage)){
-  			this.saveIndex++;
-  			storage = this.storageName + this.saveIndex
-  			console.log("Перебор хранилища")
-  		}
-  		localStorage.setItem(storage, data)
-  		console.log(`Создано хранилище ${storage}`)
-  		this.saveIndex++;
-  }
-*/
 
 }

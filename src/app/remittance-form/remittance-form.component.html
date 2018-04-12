@@ -40,5 +40,6 @@
 	    <input class="form-control" formControlName="summ" placeholder="сумма">
 	  </div>
 	  <button type = "submit" [disabled]="!remittanceForm.valid">Перевести</button>
+	  <button type = "button" (click) = "clearLocal()">Clear</button>
 	</div>
 </form>
