@@ -19,7 +19,7 @@
 			<td>{{history[i].reciever.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}</td>
 			<td>{{history[i].summ}}</td>
 			<td>{{history[i].date}}</td>
-			<td><button type = 'button'>Soon</button>
+			<td><button type = 'button' (click) = "toRemittanceForme(i)">Повторить</button>
 			<button type = 'button' (click) = "deleteNote(i)">Удалить</button></td>
 		</tr>
 	</tbody>
@@ -30,7 +30,10 @@
 		<td>****************</td>
 		<td>******</td>
 		<td>**.**.****</td>
-		<td>Нет сохраненных переводов</td>
+		<td><button type = 'button' (click) = "toRemittanceForme()">Осуществить платеж</button>
+			
+		</td>
 	</tr>
 	</tbody>
+	<router-outlet></router-outlet>
 </table>

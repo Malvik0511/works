@@ -5,29 +5,29 @@ import { Reciever, Sender, RemittanceData } from './data-model';
 @Injectable()
 export class RemittanceDataService {
 	storageName:string;
-	//saveIndex:number
-	//localStorageKeys:string[]
+	repeatPaymentStorage: string
 
   constructor() {
-  	this.storageName = "remittance-storage-";
-	//this.saveIndex = 0;
-	//this.localStorageKeys = [];
-
+  	this.storageName = "remittance-storage";
+  	this.repeatPaymentStorage = "remittance-storage-storage"
    }
 
-/*
-  private updateLocalStorageKeys(): void{
-  	if (!this.localStorageKeys.length){
-  		let key = this.storageName + this.saveIndex
-  		while (localStorage.getItem(key)){
-  			this.localStorageKeys.push(key)
-  			this.saveIndex = this.saveIndex + 1;
-  			key = this.storageName + this.saveIndex;
-  			console.log("Восстановление ключей")
-  		}
-  	}
+  repeatPayment(id:number):void{
+  	let note = this.getNote(id);
+  	let cardNumber = note.sender.cardNumber
+  	let key = this.repeatPaymentStorage;
+  	let data = {sender: note.sender, reciever: note.reciever,summ: note.summ}
+  	console.log(`Повтор операции №${id}`)
+	localStorage.setItem(key, JSON.stringify(data))
   }
-  */
+
+  checkRepeat():any{
+  	let key = this.repeatPaymentStorage;
+  	let info = localStorage.getItem(key);
+  	localStorage.setItem(key, "")
+  	if (info) return JSON.parse(info);
+  	else return "";
+  }
 
   save(data: RemittanceData):void {
   	let key = this.storageName
@@ -37,6 +37,8 @@ export class RemittanceDataService {
   	console.log(`В хранилище ${key} добавлена запись №${index}` )
   	localStorage.setItem(key, JSON.stringify(newStorage));
   }
+
+
 
   convertStringToRemittanceData(data: string):RemittanceData{
   	return JSON.parse(data);

@@ -2,6 +2,7 @@ import { Component, OnInit,  Input, OnChanges } from '@angular/core';
 import {RemittanceDataService} from '../remittance-data.service'
 import { Reciever, Sender, RemittanceData } from '../data-model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-remittance-form',
@@ -16,26 +17,35 @@ export class RemittanceFormComponent implements OnInit {
 	remittanceData: RemittanceData;
 	sender: Sender;
 	reciever: Reciever;
-	summ: string
-	numPattern: string
-	namePattern: string
+	summ: number;
+	numPattern: RegExp;
+	namePattern: RegExp;
+	summPattern: RegExp;
 
-	constructor(private fb: FormBuilder, private dataService: RemittanceDataService) {
-		var date = new Date();
+	constructor(private fb: FormBuilder, private dataService: RemittanceDataService, private router: Router) {
+
 		this.optionAr = Array(12).fill(1).map((x,i)=>i);	
-		this.monthSince = date.getMonth();	
-		this.yearSince = Number(String(date.getFullYear()).slice(-2)); 
-		this.sender = new Sender([1234, 1234, 1234, 1234], "Ivan Ivanov", this.monthSince, this.yearSince);
-		this.reciever = new Reciever([1223, 1223, 1223, 1223])
-		this.summ = 1000
+		this.monthSince = new Date().getMonth();	
+		this.yearSince = Number(String(new Date().getFullYear()).slice(-2)); 
+		let data = this.dataService.checkRepeat();
+		if (data){
+			this.sender = data.sender as Sender
+			this.reciever = data.reciever as Reciever
+			this.summ = data.summ;
+		}
+		else{
+			this.sender = new Sender(['1234', '1234', '1234', '1234'], "Ivan Ivanov", this.monthSince, this.yearSince);
+			this.reciever = new Reciever(['1223', '1223', '1223', '1223'])
+			this.summ = 1000
+		}
 		this.numPattern = /\d{4}/;
 		this.namePattern = /\w{2,}\s\w{2,}/
-		this.summPattern  = /[\d]{3}/
+		this.summPattern  = /\d{3}/
 		this.createForm()
 	}
 
 	createForm(){ 
-		console.log(Validators)
+		console.log(this.router.parseUrl(this.router.url))
 		this.remittanceForm = this.fb.group({
 			sender: this.fb.group({
 			cardNumber: this.fb.group({
@@ -55,7 +65,7 @@ export class RemittanceFormComponent implements OnInit {
 					num1_4: [this.reciever.cardNumber[0], [Validators.required, Validators.pattern(this.numPattern) ]],
 					num5_8: [this.reciever.cardNumber[1], [Validators.required, Validators.pattern(this.numPattern) ]],
 					num9_12: [this.reciever.cardNumber[2], [Validators.required, Validators.pattern(this.numPattern) ]],
-					num13_16: [this.reciever.cardNumber[3], [Validators.required, Validators.pattern(this.numPattern) ],
+					num13_16: [this.reciever.cardNumber[3], [Validators.required, Validators.pattern(this.numPattern)]],
 				})
 			}),      	
 	      	
