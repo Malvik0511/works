@@ -2,6 +2,7 @@
   История переводов
 </h2>
 <table>
+	<thead>
 	<tr>
 		<th>№</th>
 		<th>Карта платильщика</th>
@@ -9,14 +10,27 @@
 		<th>Сумма</th>
 		<th>Дата</th>
 		<th>Действие</th>
+	</tr>
+	</thead>
+	<tbody *ngIf = "history?.length">
+		<tr *ngFor = "let note of history; let i = index">
+			<td>{{i+1}}</td>
+			<td>{{history[i].sender.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}</td>
+			<td>{{history[i].reciever.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}</td>
+			<td>{{history[i].summ}}</td>
+			<td>{{history[i].date}}</td>
+			<td><button type = 'button'>Soon</button>
+			<button type = 'button' (click) = "deleteNote(i)">Удалить</button></td>
+		</tr>
+	</tbody>
+	<tbody *ngIf = "!history?.length">
 	<tr>
-	<tr *ngFor = "let note of history; let i = index">
-		<td>{{i}}</td>
-		<td>{{history[i].sender.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}</td>
-		<td>{{history[i].reciever.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}</td>
-		<td>{{history[i].summ}}</td>
-		<td>{{history[i].date}}<td>
-		<td><button type = 'button'>Soon</button>
-		<button type = 'button' (click) = "deleteNote(i)">Удалить</button></td>
-	<tr>
+		<td>0</td>
+		<td>****************</td>
+		<td>****************</td>
+		<td>******</td>
+		<td>**.**.****</td>
+		<td>Нет сохраненных переводов</td>
+	</tr>
+	</tbody>
 </table>

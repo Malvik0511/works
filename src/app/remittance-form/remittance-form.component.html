@@ -2,12 +2,16 @@
 <form [formGroup]="remittanceForm" (ngSubmit)="onSubmit()">  
 	<div formGroupName="sender" class="well well-lg card" >
 		<h4>Карта платильщика</h4>
-		<div class="form-group cardNumber" formGroupName="cardNumber">
+		<div class="cardNumber form-group" formGroupName="cardNumber">
 			<label class="center-block">Номер:</label>
-		    <input class="form-control" formControlName="num1_4">
-		    <input class="form-control" formControlName="num5_8">
-		    <input class="form-control" formControlName="num9_12">
-		    <input class="form-control" formControlName="num13_16">
+			    <input class="form-control" formControlName="num1_4" maxlength = "4">
+			    <!--p>{{remittanceForm.get('sender.cardNumber.num1_4').status}}</p-->
+			    <!--div *ngIf="num1.status" class="alert alert-danger">
+					Поле должно содержать 4 цифры
+				</div-->
+		    <input class="form-control" formControlName="num5_8" maxlength = "4">
+		    <input class="form-control" formControlName="num9_12" maxlength = "4">
+		    <input class="form-control" formControlName="num13_16" maxlength = "4">
 		</div>
 		<div>
 		  <div class="form-group fullName">
@@ -29,17 +33,16 @@
 		<h4>Карта получателя</h4>
 		<div class="form-group" formGroupName="cardNumber" class="cardNumber">
 		<label class="center-block">Номер:</label>
-		    <input class="form-control" formControlName="num1_4">
-		    <input class="form-control" formControlName="num5_8">
-		    <input class="form-control" formControlName="num9_12">
-		    <input class="form-control" formControlName="num13_16">
+		    <input class="form-control" formControlName="num1_4" maxlength = "4">
+		    <input class="form-control" formControlName="num5_8" maxlength = "4">
+		    <input class="form-control" formControlName="num9_12" maxlength = "4">
+		    <input class="form-control" formControlName="num13_16" maxlength = "4">
 		</div>
 	</div>
-	<div>
-	  <div class="form-group" class="well well-lg">
-	    <input class="form-control" formControlName="summ" placeholder="сумма">
-	  </div>
+	<div class="form-group" class="well well-lg">
+	    <input class="form-control" id = "summ" formControlName="summ" placeholder="сумма">
+	</div>
 	  <button type = "submit" [disabled]="!remittanceForm.valid">Перевести</button>
 	  <button type = "button" (click) = "clearLocal()">Clear</button>
-	</div>
+	
 </form>
