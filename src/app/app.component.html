@@ -1,9 +1,17 @@
-<h2>Перевод с карты на карту</h2>
-<nav>
-  <a routerLink="/form">Осуществить перевод</a>
-  <a routerLink="/history">Посмотреть историю переводов</a>
-</nav>
-<router-outlet></router-outlet>
+<base href="/">
+<div class = "appContainer">
+	<div class = header>
+	  <h2 class="title">Перевод с карты на карту</h2>
+	  <nav >
+	    <div></div>
+	    <div routerLink="/form" routerLinkActive="active">Осуществить перевод</div>
+	    <div routerLink="/history" routerLinkActive="active">Посмотреть историю переводов</div>
+	    <div></div>
+	    <div></div>
+	  </nav>
+	</div>
+  <router-outlet></router-outlet>
+</div>
 <!--app-remittance-form></app-remittance-form>
 <app-remittance-history></app-remittance-history-->
 

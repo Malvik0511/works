@@ -1,0 +1,41 @@
+nav{
+	margin: 2vh auto 5vh auto;
+	display: flex
+}
+
+nav div{
+	border-bottom:1px solid black;
+	flex:0 0 20%;
+}
+
+nav div{
+	border-bottom:1px solid black;
+	flex:0 0 20%;
+}
+
+nav div[routerLink]{
+	cursor:pointer;
+	display:inline;
+	position:relative;
+	padding: 10px 30px;
+	z-index:10;
+	outline:none
+
+}
+
+nav div[routerLink].active{
+	border:1px solid black;
+	border-bottom:none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.title{
+	position:relative;
+	left:10%;
+}
+
+.appContainer{
+	margin:auto;
+}
+

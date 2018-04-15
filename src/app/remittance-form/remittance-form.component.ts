@@ -45,7 +45,6 @@ export class RemittanceFormComponent implements OnInit {
 	}
 
 	createForm(){ 
-		console.log(this.router.parseUrl(this.router.url))
 		this.remittanceForm = this.fb.group({
 			sender: this.fb.group({
 			cardNumber: this.fb.group({
@@ -80,7 +79,6 @@ export class RemittanceFormComponent implements OnInit {
 
 	onSubmit() {
 	  this.remittanceData = this.prepareSendRemmitance();
-	  console.log(this.remittanceData, 1)
 	  this.dataService.save(this.remittanceData);
 	  this.createForm();
 	  /*this.rebuildForm();*/
@@ -91,7 +89,6 @@ export class RemittanceFormComponent implements OnInit {
 	}
 
 	prepareSendRemmitance(): RemittanceData{
-		console.log(this.sender.fullName)
 		const model = this.remittanceForm.value;
 		const sData = model.sender;
 		const rData = model.reciever;

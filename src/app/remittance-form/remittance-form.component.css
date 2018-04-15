@@ -1,30 +1,64 @@
 .card{
-	display: inline-block;
-	width:45%;
+	
 }
 
 .cardNumber input{
-	display:inline-block;
-	width:24%;
-	min-width: 60px;
+	
 }
 
 .fullName{
-	display: inline-block;
-	width:50%;
-
 }
 
 .validateUntil{
-	display: inline-block;
-	width:47%;
-	float:right;
+	
 }
 
 .validateUntil select{
-	display: inline-block;
-	width:48%;
+	
 }
+
+.header{
+	text-align:center;
+}
+
+.flex-container {
+	
+	display: flex; /*отображает контейнер как блочный элемент*/
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+	align-content:space-between;
+
+}
+
+.formControls{ 
+	margin:auto;
+	display: -webkit-flex; 
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-control{	
+	flex:0 0 80px;
+}
+
+
+select.form-control{	
+	flex:0 0 50%;
+}
+
+.fullName .form-control{
+	flex:0 0 50%;
+}
+
+
+.flex-item {
+	flex:0 0 27%;
+	min-width: 300px;
+	max-width:450px;
+	min-height: 200px;
+}
+
+
 
 .ng-valid[required], .ng-valid.required  {
   border: 2px solid #42A948; /* green */

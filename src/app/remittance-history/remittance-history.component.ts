@@ -19,7 +19,6 @@ export class RemittanceHistoryComponent implements OnInit {
 
   ngOnInit() {
   	this.getHistory();
-  	console.log(this.history)
   }
 
   getHistory():void{

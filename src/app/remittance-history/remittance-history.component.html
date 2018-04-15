@@ -1,39 +1,57 @@
-<h2>
-  История переводов
-</h2>
-<table>
-	<thead>
-	<tr>
-		<th>№</th>
-		<th>Карта платильщика</th>
-		<th>Карта получателя</th>
-		<th>Сумма</th>
-		<th>Дата</th>
-		<th>Действие</th>
-	</tr>
-	</thead>
-	<tbody *ngIf = "history?.length">
-		<tr *ngFor = "let note of history; let i = index">
-			<td>{{i+1}}</td>
-			<td>{{history[i].sender.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}</td>
-			<td>{{history[i].reciever.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}</td>
-			<td>{{history[i].summ}}</td>
-			<td>{{history[i].date}}</td>
-			<td><button type = 'button' (click) = "toRemittanceForme(i)">Повторить</button>
-			<button type = 'button' (click) = "deleteNote(i)">Удалить</button></td>
+<div class = "app">
+	<h2 class = "header">
+	  История переводов
+	</h2>
+	<table class = "remittance-history center">
+		<thead class = "remittance-history table-header">
+		<tr>
+			<th class = "remittance-history remittance-header-number nerrow">№</th>
+			<th class = "remittance-history remittance-header-sender-card-number wide">Карта платильщика</th>
+			<th class = "remittance-history remittance-header-reciever-card-number wide">Карта получателя</th>
+			<th class = "remittance-history remittance-header-summ medium">Сумма</th>
+			<th class = "remittance-history remittance-header-date medium">Дата</th>
+			<th class = "remittance-history remittance-header-action wide">Действие</th>
 		</tr>
-	</tbody>
-	<tbody *ngIf = "!history?.length">
-	<tr>
-		<td>0</td>
-		<td>****************</td>
-		<td>****************</td>
-		<td>******</td>
-		<td>**.**.****</td>
-		<td><button type = 'button' (click) = "toRemittanceForme()">Осуществить платеж</button>
-			
-		</td>
-	</tr>
-	</tbody>
-	<router-outlet></router-outlet>
-</table>
+		</thead>
+		<tbody *ngIf = "history?.length" class = "remittance-history table-body">
+			<tr *ngFor = "let note of history; let i = index">
+				<td class = "remittance-history remittance-number">
+					{{i+1}}
+				</td>
+				<td class = "remittance-history remittance-sender-card-number">
+					{{history[i].sender.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}
+				</td>
+				<td class = "remittance-history remittance-reciever-card-number">
+					{{history[i].reciever.cardNumber[0]+ "********" + history[i].reciever.cardNumber[3]}}
+				</td>
+				<td class = "remittance-history remittance-summ">
+					{{history[i].summ}}
+				</td>
+				<td class = "remittance-history remittance-date">
+					{{history[i].date}}
+				</td>
+				<td class = "remittance-history remittance-action-place">
+					<button class = "remittance-history remittance-action-repeat-payment" type = 'button' (click) = "toRemittanceForme(i)">
+						Повторить
+					</button>
+					<button class = "remittance-history remittance-action-delete-note" type = 'button' (click) = "deleteNote(i)">
+						Удалить
+					</button>
+				</td>
+			</tr>
+		</tbody>
+			<tbody *ngIf = "!history?.length" class = "remittance-history table-body">
+			<tr>
+				<td class = "remittance-history remittance-header-number">0</td>
+				<td class = "remittance-history remittance-header-sender-card-number">****************</td>
+				<td class = "remittance-history remittance-header-reciever-card-number">****************</td>
+				<td class = "remittance-history remittance-header-summ">******</td>
+				<td class = "remittance-history remittance-header-date">**.**.****</td>
+				<td class = "remittance-history remittance-header-action">
+					<button type = 'button' (click) = "toRemittanceForme()">Осуществить платеж</button>				
+				</td>
+			</tr>
+		</tbody>
+		<router-outlet></router-outlet>
+	</table>
+</div>

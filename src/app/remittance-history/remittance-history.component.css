@@ -1,3 +1,26 @@
-td{
+td,th{
+	text-align: center;
 	border:1px solid black;
 }
+
+.header{
+	text-align:center;
+}
+
+.center{
+	margin:auto;
+}
+
+.wide{
+	width:10vw;
+}
+
+.nerrow{
+	width:3vw;
+}
+
+.medium{
+	width:7vw;
+}
+
+
