@@ -32,10 +32,11 @@ export class RemittanceHistoryComponent implements OnInit {
 
   toRemittanceForme(id?:number):void{
   	if (id !== undefined){
-  		this.dataService.repeatPayment(id)
+      this.router.navigate([`form/${id}`])
+  		//this.dataService.repeatPayment(id)
   	}
   		
-  		this.router.navigate(['form'])
+  	else	this.router.navigate(['form'])
   	
   }
 }

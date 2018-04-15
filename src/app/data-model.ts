@@ -9,7 +9,8 @@ export class Reciever {
 export class Sender{
 	constructor(public cardNumber:[string, string, string, string],
 		public fullName: string, public month:number,  public year:number){
-	}
+
+	} 
 }
 
 
@@ -29,3 +30,6 @@ export class RemittanceData{
 		return `${day}.${month}.${year}`;
 	}
 }
+
+export const defaultSender = new Sender(['', '', '', ''], "", new Date().getMonth(), Number(String(new Date().getFullYear()).slice(-2)));
+export const defaultReciever = new Reciever(['', '', '', '']);

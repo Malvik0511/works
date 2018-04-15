@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';;
-import { Reciever, Sender, RemittanceData } from './data-model';
+import { Reciever, Sender, RemittanceData, defaultSender, defaultReciever } from './data-model';
 
 
 @Injectable()
@@ -48,7 +48,7 @@ export class RemittanceDataService {
   	let key = this.storageName;
   	let storage = JSON.parse(localStorage.getItem(key));
   	console.log(`Из хранилища ${key} отдана запись №${id}`)
-  	return storage[id] as RemittanceData;
+  	return storage[id] as RemittanceData ||  new RemittanceData(defaultSender, defaultReciever, 0);
   }
 
   getHistory():RemittanceData[]{

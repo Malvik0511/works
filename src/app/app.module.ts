@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { RemittanceFormComponent } from './remittance-form/remittance-form.component';
 import { RemittanceHistoryComponent } from './remittance-history/remittance-history.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RemittanceFormComponent,
-    RemittanceHistoryComponent
+    RemittanceHistoryComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

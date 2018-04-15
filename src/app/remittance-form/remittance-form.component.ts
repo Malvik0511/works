@@ -2,7 +2,8 @@ import { Component, OnInit,  Input, OnChanges } from '@angular/core';
 import {RemittanceDataService} from '../remittance-data.service'
 import { Reciever, Sender, RemittanceData } from '../data-model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-remittance-form',
@@ -22,26 +23,26 @@ export class RemittanceFormComponent implements OnInit {
 	namePattern: RegExp;
 	summPattern: RegExp;
 
-	constructor(private fb: FormBuilder, private dataService: RemittanceDataService, private router: Router) {
-
+	constructor(private fb: FormBuilder, private dataService: RemittanceDataService, private router: Router, private route: ActivatedRoute) {
 		this.optionAr = Array(12).fill(1).map((x,i)=>i);	
-		this.monthSince = new Date().getMonth();	
-		this.yearSince = Number(String(new Date().getFullYear()).slice(-2)); 
-		let data = this.dataService.checkRepeat();
+		/*let data = this.dataService.checkRepeat();
 		if (data){
 			this.sender = data.sender as Sender
 			this.reciever = data.reciever as Reciever
 			this.summ = data.summ;
 		}
 		else{
-			this.sender = new Sender(['1234', '1234', '1234', '1234'], "Ivan Ivanov", this.monthSince, this.yearSince);
-			this.reciever = new Reciever(['1223', '1223', '1223', '1223'])
-			this.summ = 1000
-		}
+		this.sender = new Sender(['1234', '1234', '1234', '1234'], "Ivan Ivanov", this.monthSince, this.yearSince);
+		this.reciever = new Reciever(['1223', '1223', '1223', '1223'])
+		this.summ = 1000
+		}*/
+		//console.log(321)
 		this.numPattern = /\d{4}/;
 		this.namePattern = /\w{2,}\s\w{2,}/
 		this.summPattern  = /\d{3}/
+		this.setDataForForm()
 		this.createForm()
+		
 	}
 
 	createForm(){ 
@@ -73,15 +74,29 @@ export class RemittanceFormComponent implements OnInit {
 
 	}
 
-	ngOnChanges() {
+	ngOnChanges() {		
   		this.rebuildForm();
 	}
+
+	setDataForForm(){
+		let remittance
+		this.route.params.subscribe(
+		  	(params) => {
+			    remittance = this.dataService.getNote(params['id']);
+			    console.log(remittance)
+			    this.sender = remittance.sender as Sender;
+		    	this.reciever = remittance.reciever as Reciever;
+		    	this.summ = remittance.summ;
+			}
+		)
+	}
+
+
 
 	onSubmit() {
 	  this.remittanceData = this.prepareSendRemmitance();
 	  this.dataService.save(this.remittanceData);
-	  this.createForm();
-	  /*this.rebuildForm();*/
+	  this.router.navigate(['form'])
 	}
 
 	clearLocal(){
@@ -117,6 +132,9 @@ export class RemittanceFormComponent implements OnInit {
 	 this.remittanceForm.reset();
 	}
 
-	ngOnInit() {}
+
+	ngOnInit() {
+	
+	}
 
 }
