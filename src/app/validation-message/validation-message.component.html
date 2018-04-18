@@ -1,0 +1,4 @@
+ <div class="alert alert-danger" *ngIf="field.invalid && field.touched && validatonMessages?.length">
+      <li *ngFor="let errMsg of validatonMessages"> {{errMsg}}</li>
+ </div>
+ <!--*ngIf="field.invalid && field.touched && validatonMessages?.length"-->

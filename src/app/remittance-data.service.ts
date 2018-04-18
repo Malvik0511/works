@@ -46,9 +46,16 @@ export class RemittanceDataService {
 
   getNote(id:number):RemittanceData{
   	let key = this.storageName;
-  	let storage = JSON.parse(localStorage.getItem(key));
-  	console.log(`Из хранилища ${key} отдана запись №${id}`)
-  	return storage[id] as RemittanceData ||  new RemittanceData(defaultSender, defaultReciever, 0);
+    let storage = localStorage.getItem(key)
+    if (storage){
+  	 let storage = JSON.parse(localStorage.getItem(key));
+     if (storage[id]){
+    	 console.log(`Из хранилища ${key} отдана запись №${id}`)
+       return storage[id] as RemittanceData
+      }
+    }
+    console.log(`Создана новая форма по умолчанию`)
+  	return new RemittanceData(defaultSender, defaultReciever, 0);
   }
 
   getHistory():RemittanceData[]{

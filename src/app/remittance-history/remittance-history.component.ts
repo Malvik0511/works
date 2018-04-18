@@ -29,14 +29,4 @@ export class RemittanceHistoryComponent implements OnInit {
   	this.dataService.clearNote(id);
   	this.getHistory()
   }
-
-  toRemittanceForme(id?:number):void{
-  	if (id !== undefined){
-      this.router.navigate([`form/${id}`])
-  		//this.dataService.repeatPayment(id)
-  	}
-  		
-  	else	this.router.navigate(['form'])
-  	
-  }
 }

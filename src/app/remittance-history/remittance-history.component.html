@@ -31,7 +31,7 @@
 					{{history[i].date}}
 				</td>
 				<td class = "remittance-history remittance-action-place">
-					<button class = "remittance-history remittance-action-repeat-payment" type = 'button' (click) = "toRemittanceForme(i)">
+					<button class = "remittance-history remittance-action-repeat-payment" type = 'button' routerLink="/form/{{i}}">
 						Повторить
 					</button>
 					<button class = "remittance-history remittance-action-delete-note" type = 'button' (click) = "deleteNote(i)">
@@ -48,7 +48,7 @@
 				<td class = "remittance-history remittance-header-summ">******</td>
 				<td class = "remittance-history remittance-header-date">**.**.****</td>
 				<td class = "remittance-history remittance-header-action">
-					<button type = 'button' (click) = "toRemittanceForme()">Осуществить платеж</button>				
+					<button type = 'button' routerLink="/form">Осуществить платеж</button>				
 				</td>
 			</tr>
 		</tbody>
