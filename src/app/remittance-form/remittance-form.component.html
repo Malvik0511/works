@@ -8,11 +8,17 @@
 			<div class="cardNumber form-group" formGroupName="cardNumber">
 				<label class="center-block">Номер:</label>
 				<div class = "formControls">
-					<input class="form-control" (keyup) = "test(this)" formControlName="num1_4" maxlength = "4" #num1>
-					<input class="form-control" formControlName="num5_8" maxlength = "4">
-					<input class="form-control" formControlName="num9_12" maxlength = "4">
-					<input class="form-control" formControlName="num13_16" maxlength = "4">
+					<input class="form-control" (keyup) = "test(num1)" formControlName="num1_4" maxlength = "4" #num1 autofocus>
+					<input class="form-control" (keyup) = "test(num2)"formControlName="num5_8" maxlength = "4"  #num2 >
+					<input class="form-control" (keyup) = "test(num2)"formControlName="num9_12" maxlength = "4"  #num3 >
+					<input class="form-control" (keyup) = "test(num2)"formControlName="num13_16" maxlength = "4"  #num4 >
 				</div>
+				<div>	
+					<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num1_4')"></app-validation-message>
+					<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num5_8')"></app-validation-message>
+					<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num9_12')"></app-validation-message>
+					<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num13_16')"></app-validation-message>
+		    	</div>
 			</div>
 			<div class = "formControls">
 				<div class="form-group fullName">
@@ -34,10 +40,6 @@
 			</div>
 			<div>	
 				<app-validation-message [field] = "remittanceForm.get('sender.fullName')"></app-validation-message>
-				<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num1_4')"></app-validation-message>
-				<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num5_8')"></app-validation-message>
-				<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num9_12')"></app-validation-message>
-				<app-validation-message [field] = "remittanceForm.get('sender.cardNumber.num13_16')"></app-validation-message>
 	    	</div>
 		</div>
 		
@@ -62,10 +64,14 @@
 		<div></div>
 		</div>
 		<div class = "flex-container" >
-			<div class="form-group" class="well well-lg formControls">
-			    <input class="form-control" id = "summ" formControlName="summ" placeholder="сумма">
-			  	<button type = "submit" class = "btn" [disabled]="!remittanceForm.valid">Перевести</button>
-			  	<button type = "button" (click) = "clearLocal()">Clear</button>
-			</div>	
+			<div>
+				<div class="form-group" class="well well-lg formControls">
+				    <input class="form-control" id = "summ" formControlName="summ" placeholder="сумма">
+				  	<button type = "submit" class = "btn" [disabled]="!remittanceForm.valid">Перевести</button>
+				</div>	
+				<div>
+					<app-validation-message [field] = "remittanceForm.get('summ')"></app-validation-message>
+				</div>
+			</div>
 		</div>	
 	</form>

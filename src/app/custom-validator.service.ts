@@ -27,6 +27,19 @@ export class CustomValidatorService {
 	    }
 	};
   }
+
+  public summValidator(): ValidatorFn {
+    const pattern: RegExp = /[1-9]{1}\d{2,5}/;
+    return (control: AbstractControl): { [key: string]: any } => {
+	    if (!(control.dirty || control.touched)) {
+	    	console.log(123)
+	        return null;
+	    } else {
+	    	console.log(pattern.test(control.value))
+	    	return pattern.test(control.value) ? null : {custom: `Сумма перевода введена не корректно`};
+	    }
+	};
+  }
   
 
 }

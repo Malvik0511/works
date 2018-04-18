@@ -59,7 +59,7 @@ export class RemittanceFormComponent implements OnInit {
 				})
 			}),      	
 	      	
-	      	summ:[this.summ, [Validators.required, Validators.pattern(this.summPattern)] ],
+	      	summ:[this.summ, [Validators.required, this.validateService.summValidator()] ],
 	    });
 
 	}
@@ -91,12 +91,10 @@ export class RemittanceFormComponent implements OnInit {
 	}
 
 	test(i):void{
-		let currLength = i.value.length;
-		let maxLength = i.maxLength
-		 if(currLength === maxLength){
-		 	this.current = i.nextElementSibling
-		 }
-		 console.dir(i)
+			console.dir(i)
+		 if (Array.prototype.indexOf.call(i.classList, 'ng-valid') !== -1)
+		 console.log("good")
+
 
 	}
 
