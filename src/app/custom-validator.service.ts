@@ -32,12 +32,14 @@ export class CustomValidatorService {
   }
 
   public summValidator(): ValidatorFn {
-    const pattern: RegExp = /[1-9]{1}\d{2,5}/;
     return (control: AbstractControl): { [key: string]: any } => {
+    	const summ:number = Number(control.value);
+    	console.log((control.value[0] === "0") ? {custom: `Сумма перевода введена не корректно`} : (summ >= 50 && summ < 200000) ? {custom: `Допустимая сумма перевода от 50 до 200000 рублей`} : null)
 	    if (!(control.dirty || control.touched)) {
 	        return null;
 	    } else {
-	    	return pattern.test(control.value) ? null : {custom: `Сумма перевода введена не корректно`};
+
+	    	return (control.value[0] === "0")? {custom: `Сумма перевода введена не корректно`} : (summ < 50 || summ > 200000) ? {custom: `Допустимая сумма перевода от 50 до 200000 рублей`}:null;
 	    }
 	};
   }
@@ -47,7 +49,6 @@ export class CustomValidatorService {
     const currentMonth:number = new Date().getMonth()
     return (control: AbstractControl): { [key: string]: any } => {
     	const cardYear = Number(control.value);
-    	console.log(cardYear)
     	this.formYear = control.value;
 	    if (!(control.dirty || control.touched)) {
 	        return null;

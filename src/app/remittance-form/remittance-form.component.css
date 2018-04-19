@@ -1,55 +1,42 @@
-.card{
-	
+input.ng-invalid.ng-touched.ng-invalid{
+  border-left: 5px solid #a94442; /* red */
 }
 
-.cardNumber input{
-	
-}
-
-.fullName{
-}
-
-.validateUntil{
-	
-}
-
-.validateUntil select{
-	
-}
-
-.header{
+.__header{
 	text-align:center;
 }
 
-.flex-container {
-	
+.__cards-data,
+.__summ-data {	
 	display: flex; /*отображает контейнер как блочный элемент*/
 	-webkit-justify-content: space-around;
 	justify-content: space-around;
-	align-content:space-between;
+	
 
 }
 
-.formControls{ 
+.__group-container{ 
 	margin:auto;
 	display: -webkit-flex; 
 	display: flex;
 	justify-content: space-between;
 }
-
-.form-control{	
-	flex:0 0 80px;
+.__number-field{
+	flex:0 0 20%;
 }
-
-
-select.form-control{	
+.__full-name-control{
 	flex:0 0 50%;
 }
 
-.fullName .form-control{
+.__validate-until-group{
+	flex:0 0 35%;
+}
+.__date-field{
+	flex:0 0 45%;
+}
+.__summ-field{
 	flex:0 0 50%;
 }
-
 
 .flex-item {
 	flex:0 0 27%;
@@ -58,10 +45,4 @@ select.form-control{
 	min-height: 200px;
 }
 
-
-
-input.ng-invalid.ng-touched.ng-invalid ,
-select.ng-invalid.ng-touched.ng-invalid {
-  border-left: 5px solid #a94442; /* red */
-}
 
