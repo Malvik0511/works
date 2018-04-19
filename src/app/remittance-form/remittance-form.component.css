@@ -60,7 +60,8 @@ select.form-control{
 
 
 
-input.ng-invalid.ng-touched.ng-invalid  {
+input.ng-invalid.ng-touched.ng-invalid ,
+select.ng-invalid.ng-touched.ng-invalid {
   border-left: 5px solid #a94442; /* red */
 }
 

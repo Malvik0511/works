@@ -1,0 +1,23 @@
+.absolute-center{
+	position:absolute;
+	width:400px;
+	min-height: 200px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius:5px;
+	margin: 0;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.3);
+    z-index: 100
+
+
+}
+
+.pop-up-form-message{
+	text-align: center;
+	vertical-align: center;
+	font-size:20pt;
+	color: green;
+}

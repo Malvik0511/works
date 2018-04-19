@@ -12,6 +12,7 @@ import { RemittanceHistoryComponent } from './remittance-history/remittance-hist
 import { AppRoutingModule } from './/app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ValidationMessageComponent } from './validation-message/validation-message.component';
+import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ValidationMessageComponent } from './validation-message/validation-mess
     RemittanceHistoryComponent,
     PageNotFoundComponent,
     ValidationMessageComponent,
+    PopUpFormComponent,
   ],
   imports: [
     BrowserModule,

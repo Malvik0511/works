@@ -14,29 +14,18 @@ import 'rxjs/add/operator/switchMap';
 export class RemittanceFormComponent implements OnInit {
 	remittanceForm: FormGroup;
 	optionAr: number[];
-	yearSince: number;
-	monthSince: number;
 	remittanceData: RemittanceData;
 	sender: Sender;
 	reciever: Reciever;
 	summ: number;
-	numPattern: RegExp;
-	namePattern: RegExp;
-	summPattern: RegExp;
-	current: string;
+	submitMessage: string;
 
 	constructor(private fb: FormBuilder, private dataService: RemittanceDataService, private validateService: CustomValidatorService, private router: Router, private route: ActivatedRoute) {
-		this.optionAr = Array(12).fill(1).map((x,i)=>i);	
-		this.numPattern = /\d{4}/;
-		this.namePattern = /\w{2,}\s\w{2,}/
-		this.summPattern  = /\d{3}/	
-
-
+		this.optionAr = Array(12).fill(1).map((x,i)=>i);
 	}
 
 	createForm(){ 
-		console.log(this.sender.year)
-		this.remittanceForm = this.fb.group({
+			this.remittanceForm = this.fb.group({
 			sender: this.fb.group({
 			cardNumber: this.fb.group({
 				num1_4: [this.sender.cardNumber[0], [Validators.required, this.validateService.cardNumberValidator()]],
@@ -46,8 +35,8 @@ export class RemittanceFormComponent implements OnInit {
 			}),
 	      		fullName: [this.sender.fullName, [Validators.required, this.validateService.fullNameValidator()] ],
 	      		validateUntil: this.fb.group({
-	      			month:[this.sender.month, Validators.required ],
-	      			year:[this.sender.year, Validators.required ]
+	      			month:[this.sender.month, [Validators.required, this.validateService.monthValidator()] ],
+	      			year:[this.sender.year, [Validators.required, this.validateService.yearValidator()]]
 	      		})
 			}),
 			reciever:this.fb.group({
@@ -68,6 +57,10 @@ export class RemittanceFormComponent implements OnInit {
   		this.rebuildForm();
 	}
 
+	getMonth():number{
+		return(this.remittanceForm.value.sender.validateUntil.month)
+	}
+
 	setDataForForm(){
 		let remittance
 		this.route.params.subscribe(
@@ -86,16 +79,21 @@ export class RemittanceFormComponent implements OnInit {
 	onSubmit() {
 	  this.remittanceData = this.prepareSendRemmitance();
 	  this.dataService.save(this.remittanceData);
-	  this.router.navigate(['form']);
-	  this.createForm()
+	  this.submitNotify()
+	}
+
+	submitNotify():void{
+		this.submitMessage = "Платеж проведен успешно"
+		setTimeout(()=>{
+			this.submitMessage = ""
+			this.router.navigate(['form']);
+	  		this.createForm()
+		}, 2000)
 	}
 
 	test(i):void{
-			console.dir(i)
-		 if (Array.prototype.indexOf.call(i.classList, 'ng-valid') !== -1)
-		 console.log("good")
-
-
+	console.log(this.sender.month)
+		//this.sender.month = this.remittanceForm.value.sender.validateUntil.month
 	}
 
 	clearLocal(){
@@ -123,6 +121,8 @@ export class RemittanceFormComponent implements OnInit {
 			rData.cardNumber.num13_16,
 		])
 		const summ: number = model.summ
+
+		console.log(sender.month)
 		return new RemittanceData(sender, reciever, summ)
 	}
 

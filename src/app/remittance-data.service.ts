@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';;
+import { Injectable } from '@angular/core';
 import { Reciever, Sender, RemittanceData, defaultSender, defaultReciever } from './data-model';
 
 
@@ -11,23 +11,6 @@ export class RemittanceDataService {
   	this.storageName = "remittance-storage";
   	this.repeatPaymentStorage = "remittance-storage-storage"
    }
-
-  repeatPayment(id:number):void{
-  	let note = this.getNote(id);
-  	let cardNumber = note.sender.cardNumber
-  	let key = this.repeatPaymentStorage;
-  	let data = {sender: note.sender, reciever: note.reciever,summ: note.summ}
-  	console.log(`Повтор операции №${id}`)
-	localStorage.setItem(key, JSON.stringify(data))
-  }
-
-  checkRepeat():any{
-  	let key = this.repeatPaymentStorage;
-  	let info = localStorage.getItem(key);
-  	localStorage.setItem(key, "")
-  	if (info) return JSON.parse(info);
-  	else return "";
-  }
 
   save(data: RemittanceData):void {
   	let key = this.storageName
