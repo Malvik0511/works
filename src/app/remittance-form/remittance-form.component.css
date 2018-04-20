@@ -22,6 +22,7 @@ input.ng-invalid.ng-touched.ng-invalid{
 	justify-content: space-between;
 }
 .__number-field{
+	position:relative;
 	flex:0 0 20%;
 }
 .__full-name-control{
@@ -32,10 +33,15 @@ input.ng-invalid.ng-touched.ng-invalid{
 	flex:0 0 35%;
 }
 .__date-field{
+	position:relative;
 	flex:0 0 45%;
 }
 .__summ-field{
+	position:relative;
 	flex:0 0 50%;
+}
+.__full-name-field{
+	position:relative;
 }
 
 .flex-item {

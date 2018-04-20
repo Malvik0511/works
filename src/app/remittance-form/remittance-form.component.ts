@@ -1,7 +1,7 @@
 import { Component, OnInit,  Input, OnChanges } from '@angular/core';
-import {RemittanceDataService} from '../remittance-data.service'
+import { RemittanceDataService } from '../remittance-data.service'
 import { CustomValidatorService } from '../custom-validator.service';
-import { Reciever, Sender, RemittanceData } from '../data-model';
+import { Reciever, Sender, RemittanceData, PopUpInfo } from '../data-model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
@@ -13,26 +13,50 @@ import 'rxjs/add/operator/switchMap';
 })
 export class RemittanceFormComponent implements OnInit {
 	remittanceForm: FormGroup;
-	optionAr: number[];
 	remittanceData: RemittanceData;
 	sender: Sender;
 	reciever: Reciever;
-	summ: number;
-	submitMessage: string;
+	summ: string;
+	submitInfo: PopUpInfo;
+	styles: object;
 
-	constructor(private fb: FormBuilder, private dataService: RemittanceDataService, private validateService: CustomValidatorService, private router: Router, private route: ActivatedRoute) {
-		this.optionAr = Array(12).fill(1).map((x,i)=>i);
+	constructor(
+		private fb: FormBuilder,
+		private dataService: RemittanceDataService,
+		private validateService: CustomValidatorService, 
+		private router: Router,
+		private route: ActivatedRoute
+	) {
+		this.fillStyles();
 	}
 
-	createForm(){ 
-			this.remittanceForm = this.fb.group({
+	fillStyles():void{
+		this.styles = {
+			validator:{
+				pos:{
+					top:"validation-message_pos_top",
+					down:"validation-message_pos_down",
+					left:"validation-message_pos_left",
+					right:"validation-message_pos_right",
+					topRight:"validation-message_pos_top-right",
+					downRight:"validation-message_pos_down-right",
+					topLeft:"validation-message_pos_top-left",
+					downLeft:"validation-message_pos_down-left"
+				}
+			}
+		}
+
+	}
+
+	createForm():void{ 
+		this.remittanceForm = this.fb.group({
 			sender: this.fb.group({
-			cardNumber: this.fb.group({
-				num1_4: [this.sender.cardNumber[0], [Validators.required, this.validateService.cardNumberValidator()]],
-				num5_8: [this.sender.cardNumber[1], [Validators.required, this.validateService.cardNumberValidator()]],
-				num9_12: [this.sender.cardNumber[2], [Validators.required, this.validateService.cardNumberValidator()]],
-				num13_16: [this.sender.cardNumber[3], [Validators.required, this.validateService.cardNumberValidator()]]
-			}),
+				cardNumber: this.fb.group({
+					num1_4: [this.sender.cardNumber[0], [Validators.required, this.validateService.cardNumberValidator()]],
+					num5_8: [this.sender.cardNumber[1], [Validators.required, this.validateService.cardNumberValidator()]],
+					num9_12: [this.sender.cardNumber[2], [Validators.required, this.validateService.cardNumberValidator()]],
+					num13_16: [this.sender.cardNumber[3], [Validators.required, this.validateService.cardNumberValidator()]]
+				}),
 	      		fullName: [this.sender.fullName, [Validators.required, this.validateService.fullNameValidator()] ],
 	      		validateUntil: this.fb.group({
 	      			month:[this.sender.month, [Validators.required, this.validateService.monthValidator()] ],
@@ -53,51 +77,39 @@ export class RemittanceFormComponent implements OnInit {
 
 	}
 
-	ngOnChanges() {		
-  		this.rebuildForm();
+	nextField(i):void{
+		if (i.value.length === i.maxLength){
+			let index = i.tabIndex + 1;
+			let next = document.querySelector( `input[tabindex = "${index}"]` )
+			next.focus()
+		}
 	}
 
-	getMonth():number{
-		return(this.remittanceForm.value.sender.validateUntil.month)
-	}
-
-	setDataForForm(){
+	setDataForForm():void{
 		let remittance
-		this.route.params.subscribe(
-		  	(params) => {
-			    remittance = this.dataService.getNote(params['id']);
-			    console.log(remittance)
-			    this.sender = remittance.sender as Sender;
-		    	this.reciever = remittance.reciever as Reciever;
-		    	this.summ = remittance.summ;
-			}
-		)
+		this.route.params.subscribe(params => {
+			remittance = this.dataService.getNote(params['id']);
+			console.log(remittance)
+			this.sender = remittance.sender as Sender;
+		  	this.reciever = remittance.reciever as Reciever;
+		    this.summ = remittance.summ;
+		})
 	}
 
 
-
-	onSubmit() {
+	onSubmit():void {
 	  this.remittanceData = this.prepareSendRemmitance();
 	  this.dataService.save(this.remittanceData);
 	  this.submitNotify()
 	}
 
 	submitNotify():void{
-		this.submitMessage = "Платеж проведен успешно"
+		this.submitInfo = new PopUpInfo("Перевод осуществлен", 'success' )
 		setTimeout(()=>{
-			this.submitMessage = ""
+			this.submitInfo = null;
 			this.router.navigate(['form']);
-	  		this.createForm()
-		}, 2000)
-	}
-
-	test(i):void{
-	console.log(this.sender.month)
-		//this.sender.month = this.remittanceForm.value.sender.validateUntil.month
-	}
-
-	clearLocal(){
-		this.dataService.clearHistory();
+	  		this.remittanceForm.reset();
+		}, 1500)
 	}
 
 	prepareSendRemmitance(): RemittanceData{
@@ -120,17 +132,11 @@ export class RemittanceFormComponent implements OnInit {
 			rData.cardNumber.num9_12,
 			rData.cardNumber.num13_16,
 		])
-		const summ: number = model.summ
+		const summ: string = model.summ
 
 		console.log(sender.month)
 		return new RemittanceData(sender, reciever, summ)
 	}
-
-
-	rebuildForm() {
-	 this.remittanceForm.reset();
-	}
-
 
 	ngOnInit() {
 		this.setDataForForm()

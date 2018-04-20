@@ -34,12 +34,10 @@ export class CustomValidatorService {
   public summValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
     	const summ:number = Number(control.value);
-    	console.log((control.value[0] === "0") ? {custom: `Сумма перевода введена не корректно`} : (summ >= 50 && summ < 200000) ? {custom: `Допустимая сумма перевода от 50 до 200000 рублей`} : null)
 	    if (!(control.dirty || control.touched)) {
 	        return null;
 	    } else {
-
-	    	return (control.value[0] === "0")? {custom: `Сумма перевода введена не корректно`} : (summ < 50 || summ > 200000) ? {custom: `Допустимая сумма перевода от 50 до 200000 рублей`}:null;
+	    	return (control.value && (control.value[0] === "0" || isNaN(summ))? {custom: `Сумма перевода введена не корректно`} : (summ < 50 || summ > 200000) ? {custom: `Допустимая сумма перевода от 50 до 200000 рублей`}:null;
 	    }
 	};
   }
@@ -53,7 +51,7 @@ export class CustomValidatorService {
 	    if (!(control.dirty || control.touched)) {
 	        return null;
 	    } else {
-	    	return (cardYear !== undefined && (cardYear > 99 || cardYear <= 0  || (cardYear - currentYear >= 10)))? {custom: `Информация о дате введена не корректно`} : (cardYear && (currentYear > cardYear || (currentYear === cardYear && this.formMonth && currentMonth >= Number(this.formMonth)))) ? {custom: `Срок действия карты вышел`}:null ;
+	    	return (cardYear !== undefined && (cardYear > 99 || cardYear <= 0  || (cardYear - currentYear >= 10) || isNaN(cardYear)))? {custom: `Информация о дате введена не корректно`} : (cardYear && (currentYear > cardYear || (currentYear === cardYear && this.formMonth && currentMonth >= Number(this.formMonth)))) ? {custom: `Срок действия карты вышел`}:null ;
 	    }
 	};
   }
@@ -68,7 +66,7 @@ export class CustomValidatorService {
 		    if (!(control.dirty || control.touched)) {
 		        return null;
 		    } else {
-		    	return (cardMonth !==undefined && (cardMonth > 12 || cardMonth === 0))? {custom: `Информация о дате введена не корректно`}:(
+		    	return (cardMonth !==undefined && (cardMonth > 12 || cardMonth === 0 || isNaN(cardMonth)))? {custom: `Информация о дате введена не корректно`}:(
 		    	cardMonth && (cardMonth <= currentMonth) && (this.formYear && Number(this.formYear) <= currentYear))? {custom: `Срок действия карты вышел`}:null ;
 		    }
 		};

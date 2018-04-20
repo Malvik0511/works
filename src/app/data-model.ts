@@ -13,10 +13,16 @@ export class Sender{
 	} 
 }
 
+export class PopUpInfo{
+	constructor(public message: string,	public styles: string){
+
+	} 
+}
+
 
 export class RemittanceData{
 	date: string;
-	constructor(public sender: Sender, public reciever: Reciever, public summ: number){
+	constructor(public sender: Sender, public reciever: Reciever, public summ: string){
 		this.date = this.formatDate(new Date())
 	}
 

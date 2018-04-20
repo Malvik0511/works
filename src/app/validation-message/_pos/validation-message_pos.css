@@ -1,0 +1,62 @@
+.validation-message_pos_top,
+:host-context(.validation-message_pos_top) .validation-message{
+	margin: 0;
+    top: 0px;
+    transform: translate(0px, -100%);
+}
+
+.validation-message_pos_top-right,
+:host-context(.validation-message_pos_top-right) .validation-message{
+	top: 0px;
+    transform: translate(0px, -100%);
+	margin: 0;
+    left: 100%;   
+}
+
+.validation-message_pos_top-left,
+:host-context(.validation-message_pos_top-left) .validation-message{
+	top: 0px;
+	margin: 0;
+    left: 0%;
+    transform: translate(-100%, -100%); 
+}
+
+.validation-message_pos_down,
+:host-context(.validation-message_pos_down) .validation-message{
+	margin: 0;
+    top: 100%;
+}
+
+.validation-message_pos_down-right,
+:host-context(.validation-message_pos_down-right) .validation-message{
+	margin:0;
+	top: 100%;
+	left: 100%;
+}
+
+.validation-message_pos_down-left,
+:host-context(.validation-message_pos_down-left) .validation-message{
+	margin: 0;
+    top: 100%;
+    margin: 0;
+    left: 0%;
+    transform: translate(-100%, 0px);
+}
+
+.validation-message_pos_left,
+:host-context(.validation-message_pos_left) .validation-message{
+	margin: 0;
+    left: 0%;
+    top:50%;   
+    transform: translate(-100%, -50%);
+}
+
+.validation-message_pos_right,
+:host-context(.validation-message_pos_right) .validation-message{
+	margin: 0;
+    left: 100%;
+    top:50%;
+    transform: translate(0%, -50%);
+}
+
+

@@ -38,7 +38,7 @@ export class RemittanceDataService {
       }
     }
     console.log(`Создана новая форма по умолчанию`)
-  	return new RemittanceData(defaultSender, defaultReciever, 0);
+  	return new RemittanceData(defaultSender, defaultReciever, "");
   }
 
   getHistory():RemittanceData[]{

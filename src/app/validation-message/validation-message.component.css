@@ -1,3 +1,5 @@
-div{
-	position:absolute;
+.validation-message{
+	width:6vw;
+	position: absolute;
+	z-index:10;
 }

@@ -1,3 +1,5 @@
-<div *ngIf = "message" class = "pop-up-form absolute-center">
-	<p class = "pop-up-form pop-up-form-message">{{message}}</p>
+<div *ngIf = "info" class = "pop-up-form" >
+	<p class = "pop-up-form__message">{{info?.message}}</p>
+	<p>{{cl}}</p>
+	<p>{{this.cl}}</p>
 </div>
