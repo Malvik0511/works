@@ -37,7 +37,7 @@ export class CustomValidatorService {
 	    if (!(control.dirty || control.touched)) {
 	        return null;
 	    } else {
-	    	return (control.value && (control.value[0] === "0" || isNaN(summ))? {custom: `Сумма перевода введена не корректно`} : (summ < 50 || summ > 200000) ? {custom: `Допустимая сумма перевода от 50 до 200000 рублей`}:null;
+	    	return (control.value && (control.value[0] === "0" || isNaN(summ)))? {custom: `Сумма перевода введена не корректно`} : (summ < 50 || summ > 200000) ? {custom: `Допустимая сумма перевода от 50 до 200000 рублей`}:null;
 	    }
 	};
   }

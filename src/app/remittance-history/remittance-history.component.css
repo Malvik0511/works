@@ -1,36 +1,4 @@
-td,th{
-	
-	
+.remittance-history{
+	margin-bottom:100px;
 }
-.__data-container{
-	margin:auto;
-}
-
-.__header{
-	text-align:center;
-}
-
-._wide{
-	width:10vw;
-}
-
-._nerrow{
-	width:3vw;
-}
-
-._medium{
-	width:7vw;
-}
-
-._black-border th,
-._black-border td{
-	border:1px solid black;
-	text-align: center;
-}  
-
-._text-center th,
-._text-center td{
-	text-align:center;
-}
-
 
