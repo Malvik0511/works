@@ -5,7 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: [
   	'./app.component.css', 
-  	'./__header/app__header.css', './__header/_theme/app__header_theme.css']
+  	'./__title/app__title.css', 
+  	'./__link/app__link.css', './__link/_theme/app__link_theme.css',
+  	'./__navigation/app__navigation.css',
+  	'./_theme/app_theme.css'
+  	]
 })
 export class AppComponent {
   title = 'remittance';

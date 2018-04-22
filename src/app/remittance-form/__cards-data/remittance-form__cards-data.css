@@ -1,0 +1,5 @@
+.remittance-form__cards-data{	
+	display: flex; /*отображает контейнер как блочный элемент*/
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+}

@@ -14,7 +14,7 @@
 		</tr>
 		</thead>
 		<tbody *ngIf = "history?.length" class = "remittance-history__data-body-container">
-			<tr *ngFor = "let note of history; let i = index">
+			<tr *ngFor = "let note of history; let i = index" class = "remittance-history__remittance-note" >
 				<td class = "remittance-history__data">
 					{{i+1}}
 				</td>
@@ -41,7 +41,7 @@
 			</tr>
 		</tbody>
 			<tbody *ngIf = "!history?.length" class = "-remittance-history __data-body-container">
-			<tr>
+			<tr class = "remittance-history__remittance-note">
 				<td class = "remittance-history__data">0</td>
 				<td class = "remittance-history__data">****************</td>
 				<td class = "remittance-history__data">****************</td>

@@ -1,0 +1,15 @@
+:host-context(.theme_black) .validation-message,
+.validation-message_theme_black{
+	border-color:black;
+	background-color: white;
+	color:black;
+	text-shadow:none;
+}
+
+:host-context(.theme_blue) .validation-message,
+.validation-message_theme_blue{
+	border: 1px solid blue;
+	background-color: rgba(255,255,255, 0.8);
+	color:black;
+	text-shadow:none;
+}

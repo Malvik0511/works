@@ -1,0 +1,11 @@
+:host-context(.theme_black) .pop-up-form,
+.pop-up-form_theme_black{
+	background-color: rgba(192, 192, 192, 0.98);
+	text-shadow: 1px 1px 1px white;
+}
+
+:host-context(.theme_blue) .pop-up-form,
+.pop-up-form_theme_blue{
+	background-color: rgba(255, 255, 255, 0.8);
+	text-shadow: none
+}

@@ -1,0 +1,12 @@
+:host-context(.theme_black) .remittance-history__data,
+.remittance-history__data_theme_black{
+	border:1px solid white;
+	background: grey;
+	text-shadow:1px 1px 1px black;
+}  
+
+:host-context(.theme_blue) .remittance-history__data,
+.remittance-history__data_theme_blue{
+	border: inherit;
+	background: inherit;
+}  

@@ -1,0 +1,13 @@
+:host-context(.theme_black) .remittance-history__action-place,
+.remittance-history__action-place_theme_black{
+	border-color:white;
+	background: grey;
+}  
+
+:host-context(.theme_blue) .remittance-history__action-place,
+.remittance-history__action-place_theme_blue{
+	background: rgb(0, 191, 255);
+	border-color:inherit;
+}  
+
+

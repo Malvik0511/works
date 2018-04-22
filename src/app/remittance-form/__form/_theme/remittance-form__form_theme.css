@@ -1,0 +1,14 @@
+:host-context(.theme_black) .remittance-form__form,
+.remittance-form__form_theme_black{
+	text-shadow:1px 1px 1px black;
+	background-color: grey;
+}
+
+:host-context(.theme_blue) .remittance-form__form,
+.remittance-form__form_theme_blue{
+	color:rgb(0, 191, 255);
+	text-shadow:none;
+	border:2px solid rgba(255, 255, 255, 0.8);
+}
+
+

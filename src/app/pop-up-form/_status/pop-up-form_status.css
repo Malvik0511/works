@@ -1,10 +1,10 @@
-:host-context(.success) .pop-up-form,
+:host-context(.pop-up-form_success) .pop-up-form,
 .pop-up-form_success{
 	color: green;
 	border: 1px solid green;
 }
 
-:host-context(.error) .pop-up-form,
+:host-context(.pop-up-form_error) .pop-up-form,
 .pop-up-form_error{
 	color: red;
 	border: 1px solid red;

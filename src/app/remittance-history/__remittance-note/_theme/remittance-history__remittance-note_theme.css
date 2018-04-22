@@ -1,0 +1,15 @@
+:host-context(.theme_blue) .remittance-history__remittance-note:nth-child(odd),
+.remittance-history__remittance-note_theme_blue:nth-child(odd){
+	border:1px solid black;
+	color: blue;
+	background: rgba(255, 255, 255, 0.9);
+	text-shadow:none;
+}
+
+:host-context(.theme_blue) .remittance-history__remittance-note:nth-child(even),
+.remittance-history__remittance-note_theme_blue:nth-child(even){
+	border:1px solid black;
+	color: white;
+	background: rgb(0, 191, 255);
+}
+

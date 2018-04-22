@@ -1,0 +1,7 @@
+.remittance-form__summ-data{	
+	display: flex; /*отображает контейнер как блочный элемент*/
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+

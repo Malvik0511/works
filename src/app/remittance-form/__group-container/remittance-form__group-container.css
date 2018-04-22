@@ -1,0 +1,6 @@
+.remittance-form__group-container{ 
+	margin:auto;
+	display: -webkit-flex; 
+	display: flex;
+	justify-content: space-between;
+}

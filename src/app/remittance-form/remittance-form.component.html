@@ -1,102 +1,105 @@
 <div class = "remittance-form">
-<h2 class = "-remittance-form __header">Новый перевод</h2>
+<h2 class = "remittance-form__title">Новый перевод</h2>
 	<app-pop-up-form [info] = "submitInfo" [ngClass] = "submitInfo?.styles"></app-pop-up-form>
-	<form [formGroup]="remittanceForm" (ngSubmit)="onSubmit()" class = "-remittance-form __all-form">  
-		<div class = "-remittance-form __cards-data">
-			<div class = "-remittance-form __empty-block"></div>
-			<div formGroupName="sender" class="well well-lg form-group flex-item -remittance-form __form" >
-				<h4 class = "-remittance-form __form-header">Карта платильщика</h4>
-				<div class="form-group -remittance-form __card-number-group" formGroupName="cardNumber">
-					<label class="remittance-form __group-header">Номер:</label>
-					<div class = "-remittance-form __group-container">
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number" 
+	<form [formGroup]="remittanceForm" (ngSubmit)="onSubmit()" class = "remittance-form__all-form">  
+		<div class = "remittance-form__cards-data">
+			<div class = "remittance-form__empty-block"></div>
+			<div formGroupName="sender" class="well well-lg form-group flex-item remittance-form__form" >
+				<h4 class = "remittance-form__form-title">Карта платильщика</h4>
+				<div class="form-group remittance-form__card-number-group" formGroupName="cardNumber">
+					<label class="remittance-form__group-title">Номер:</label>
+					<div class = "remittance-form__group-container">
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number" 
 							formControlName="num1_4" maxlength = "4" placeholder="0000" tabindex="1" #sn1 (input) = "nextField(sn1)">
 							<app-validation-message [ngClass] = "styles.validator.pos.topLeft" [field] = "remittanceForm.get('sender.cardNumber.num1_4')"></app-validation-message>
 						</div>
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number"
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number"
 							 formControlName="num5_8" maxlength = "4" placeholder="0000" tabindex="2" #sn2 (input) = "nextField(sn2)">
 							<app-validation-message [ngClass] = "styles.validator.pos.top" [field] = "remittanceForm.get('sender.cardNumber.num5_8')"></app-validation-message>
 						</div>
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number"
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number"
 							 formControlName="num9_12" maxlength = "4" placeholder="0000" tabindex="3" #sn3 (input) = "nextField(sn3)">
 							<app-validation-message [ngClass] = "styles.validator.pos.top" [field] = "remittanceForm.get('sender.cardNumber.num9_12')"></app-validation-message>
 						</div>
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number"
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number"
 							 formControlName="num13_16" maxlength = "4" placeholder="0000" tabindex="4" #sn4 (input) = "nextField(sn4)">
 							<app-validation-message [ngClass] = "styles.validator.pos.topRight"  [field] = "remittanceForm.get('sender.cardNumber.num13_16')"></app-validation-message>
 						</div>					
 					</div>
 				</div>
-				<div class = "-remittance-form __group-container">
-					<div class="-remittance-form __full-name-control">
-						<label class="-remittance-form __group-header">ФИО держателя:</label>
-						<div class = "-remittance-form __full-name-field">
-							<input class="form-control -remittance-form __full-name"
+				<div class = "remittance-form__group-container">
+					<div class="remittance-form__full-name-control">
+						<label class="remittance-form__group-title">ФИО держателя:</label>
+						<div class = "remittance-form__full-name-field">
+							<input class="form-control remittance-form__full-name"
 							 formControlName="fullName" placeholder="Ivanov Ivan" tabindex="5">			
 							<app-validation-message [ngClass] = "styles.validator.pos.down" [field] = "remittanceForm.get('sender.fullName')"></app-validation-message>
 						</div>			
 					</div>  
-					<div class="form-group -remittance-form __validate-until-group" formGroupName = "validateUntil">
-						<label class="-remittance-form __group-header">Активна до:</label>
-						<div class = "-remittance-form __group-container">
-							<div class = "-remittance-form __date-field">
-								<input class="form-control -remittance-form __date"
+					<div class="form-group remittance-form__validate-until-group" formGroupName = "validateUntil">
+						<label class="remittance-form__group-title">Активна до:</label>
+						<div class = "remittance-form__group-container">
+							<div class = "remittance-form__date-field">
+								<input class="form-control remittance-form__date"
 								 formControlName="month" maxlength = "2" placeholder="01" tabindex="6" #mm (input) = "nextField(mm)">
 								<app-validation-message [ngClass] = "styles.validator.pos.down" [field] = "remittanceForm.get('sender.validateUntil.month')"></app-validation-message>								
 							</div>
-							<div class = "-remittance-form __date-field">
-								<input class="form-control -remittance-form __date"
+							<div class = "remittance-form__date-field">
+								<input class="form-control remittance-form__date"
 								 formControlName="year" maxlength = "2" placeholder="19" tabindex="7" #yy (input) = "nextField(yy)">
 								<app-validation-message [ngClass] = "styles.validator.pos.right" [field] = "remittanceForm.get('sender.validateUntil.year')"></app-validation-message>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class = "remittance-form __empty-block"></div>
+				<div class = "remittance-form__empty-block"></div>
 			</div>		
-			<div formGroupName= "reciever" class="well well-lg flex-item -remittance-form __form">
-				<h4 class = "-remittance-form __form">Карта получателя</h4>
-				<div class="form-group -remittance-form __card-number-group" formGroupName="cardNumber" class="cardNumber">
-					<label class="-remittance-form __group-header">Номер:</label>
-					<div class = "-remittance-form __group-container">
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number"
+			<div formGroupName= "reciever" class="well well-lg flex-item remittance-form__form">
+				<h4 class = "remittance-form__form-title">Карта получателя</h4>
+				<div class="form-group remittance-form__card-number-group" formGroupName="cardNumber" class="cardNumber">
+					<label class="remittance-form__group-header">Номер:</label>
+					<div class = "remittance-form__group-container">
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number"
 							 formControlName="num1_4" maxlength = "4" placeholder="0000" tabindex="8" #rn1 (input) = "nextField(rn1)">
 							<app-validation-message [ngClass] = "styles.validator.pos.downLeft" [field] = "remittanceForm.get('reciever.cardNumber.num1_4')"></app-validation-message>
 						</div>
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number"
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number"
 							 formControlName="num5_8" maxlength = "4" placeholder="0000" tabindex="9" #rn2 (input) = "nextField(rn2)">
 							<app-validation-message [ngClass] = "styles.validator.pos.down" [field] = "remittanceForm.get('reciever.cardNumber.num5_8')"></app-validation-message>
 						</div>
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number"
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number"
 							 formControlName="num9_12" maxlength = "4" placeholder="0000" tabindex="10" #rn3 (input) = "nextField(rn3)">
 							<app-validation-message [ngClass] = "styles.validator.pos.down" [field] = "remittanceForm.get('reciever.cardNumber.num9_12')"></app-validation-message>
 						</div>
-						<div class = "-remittance-form __number-field">
-							<input class="form-control -remittance-form __number"
+						<div class = "remittance-form__number-field">
+							<input class="form-control remittance-form__number"
 							 formControlName="num13_16" maxlength = "4" placeholder="0000" tabindex="11" #rn4 (input) = "nextField(rn4)">
 							<app-validation-message [ngClass] = "styles.validator.pos.downRight" [field] = "remittanceForm.get('reciever.cardNumber.num13_16')"></app-validation-message>
 						</div>					
 					</div>
 				</div>
 			</div>
-			<div class = "-remittance-form __empty-block"></div>
+			<div class = "remittance-form__empty-block"></div>
 		</div>
-		<div class = "-remottance-form __summ-data">
-			<div class = "-remittance-form __form">
-				<div class="form-group" class="well well-lg -remittance-form __group-container">
-					<div class = "-remittance-form __summ-field">
-						<input class="form-control -remittance-form __summ" id = "summ"
+		<div class = "remittance-form__summ-data">
+			<div class = "well well-lg remittance-form__form flex-item">
+				<div class="form-group" class="remittance-form__group-container">
+					<div class = "remittance-form__summ-field">
+						<input class="form-control remittance-form__summ" id = "summ"
 						 formControlName="summ" placeholder="сумма" placeholder="50-200000" tabindex="12">
 						<app-validation-message [ngClass] = "styles.validator.pos.down" [field] = "remittanceForm.get('summ')"></app-validation-message>
 					</div>
-					<button type = "submit" class = "btn -remittance-form __submit-btn" [disabled]="!remittanceForm.valid" tabindex="12">Перевести</button>
+					<button type = "submit" class = "btn btn-success remittance-form__submit-btn" 
+					[disabled]="!remittanceForm.valid" tabindex="12">
+						Перевести
+					</button>
 				</div> 
 			</div>	
 		</div>

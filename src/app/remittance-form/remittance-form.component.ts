@@ -9,7 +9,20 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'app-remittance-form',
   templateUrl: './remittance-form.component.html',
-  styleUrls: ['./remittance-form.component.css']
+  styleUrls: [
+	  './remittance-form.component.css',
+	  './__form/_theme/remittance-form__form_theme.css',
+	  './__cards-data/remittance-form__cards-data.css',
+	  './__date-field/remittance-form__date-field.css',
+	  './__full-name-control/remittance-form__full-name-control.css',
+	  './__full-name-field/remittance-form__full-name-field.css',
+	  './__group-container/remittance-form__group-container.css',
+	  './__number-field/remittance-form__number-field.css',
+	  './__summ-data/remittance-form__summ-data.css',
+	  './__summ-field/remittance-form__summ-field.css',
+	  './__title/remittance-form__title.css',
+	  './__validate-until-group/remittance-form__validate-until-group.css'
+  ]
 })
 export class RemittanceFormComponent implements OnInit {
 	remittanceForm: FormGroup;
@@ -81,7 +94,7 @@ export class RemittanceFormComponent implements OnInit {
 		if (i.value.length === i.maxLength){
 			let index = i.tabIndex + 1;
 			let next = document.querySelector( `input[tabindex = "${index}"]` )
-			next.focus()
+			HTMLElement.prototype.focus.call(next);
 		}
 	}
 
@@ -104,7 +117,7 @@ export class RemittanceFormComponent implements OnInit {
 	}
 
 	submitNotify():void{
-		this.submitInfo = new PopUpInfo("Перевод осуществлен", 'success' )
+		this.submitInfo = new PopUpInfo("Перевод осуществлен", 'pop-up-form_success' )
 		setTimeout(()=>{
 			this.submitInfo = null;
 			this.router.navigate(['form']);

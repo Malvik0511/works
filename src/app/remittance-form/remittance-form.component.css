@@ -2,53 +2,10 @@ input.ng-invalid.ng-touched.ng-invalid{
   border-left: 5px solid #a94442; /* red */
 }
 
-.__header{
-	text-align:center;
-}
-
-.__cards-data,
-.__summ-data {	
-	display: flex; /*отображает контейнер как блочный элемент*/
-	-webkit-justify-content: space-around;
-	justify-content: space-around;
-	
-
-}
-
-.__group-container{ 
-	margin:auto;
-	display: -webkit-flex; 
-	display: flex;
-	justify-content: space-between;
-}
-.__number-field{
-	position:relative;
-	flex:0 0 20%;
-}
-.__full-name-control{
-	flex:0 0 50%;
-}
-
-.__validate-until-group{
-	flex:0 0 35%;
-}
-.__date-field{
-	position:relative;
-	flex:0 0 45%;
-}
-.__summ-field{
-	position:relative;
-	flex:0 0 50%;
-}
-.__full-name-field{
-	position:relative;
-}
-
 .flex-item {
 	flex:0 0 27%;
 	min-width: 300px;
 	max-width:450px;
-	min-height: 200px;
 }
 
 
