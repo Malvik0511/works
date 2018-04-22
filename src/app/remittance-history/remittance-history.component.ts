@@ -18,6 +18,7 @@ import { Location } from '@angular/common';
     './__remittance-note/_theme/remittance-history__remittance-note_theme.css'
   ]
 })
+
 export class RemittanceHistoryComponent implements OnInit {
 	history: RemittanceData[]
 

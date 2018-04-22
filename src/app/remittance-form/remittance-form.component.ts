@@ -24,6 +24,7 @@ import 'rxjs/add/operator/switchMap';
 	  './__validate-until-group/remittance-form__validate-until-group.css'
   ]
 })
+
 export class RemittanceFormComponent implements OnInit {
 	remittanceForm: FormGroup;
 	remittanceData: RemittanceData;
@@ -102,7 +103,6 @@ export class RemittanceFormComponent implements OnInit {
 		let remittance
 		this.route.params.subscribe(params => {
 			remittance = this.dataService.getNote(params['id']);
-			console.log(remittance)
 			this.sender = remittance.sender as Sender;
 		  	this.reciever = remittance.reciever as Reciever;
 		    this.summ = remittance.summ;
@@ -146,8 +146,6 @@ export class RemittanceFormComponent implements OnInit {
 			rData.cardNumber.num13_16,
 		])
 		const summ: string = model.summ
-
-		console.log(sender.month)
 		return new RemittanceData(sender, reciever, summ)
 	}
 

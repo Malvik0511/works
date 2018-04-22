@@ -2,21 +2,16 @@
 export class Reciever {
 	constructor(
 		public cardNumber:[string, string, string, string]
-	){}
-  
+	){}  
 }
 
 export class Sender{
 	constructor(public cardNumber:[string, string, string, string],
-		public fullName: string, public month:string,  public year:string){
-
-	} 
+		public fullName: string, public month:string,  public year:string){} 
 }
 
 export class PopUpInfo{
-	constructor(public message: string,	public styles: string){
-
-	} 
+	constructor(public message: string,	public styles: string){} 
 }
 
 

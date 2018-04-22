@@ -17,14 +17,8 @@ export class RemittanceDataService {
   	let storage = JSON.parse(localStorage.getItem(key))||[];
   	let newStorage = [...storage, data]
   	let index = newStorage.length;
-  	console.log(`В хранилище ${key} добавлена запись №${index}` )
+  	//console.log(`В хранилище ${key} добавлена запись №${index}` )
   	localStorage.setItem(key, JSON.stringify(newStorage));
-  }
-
-
-
-  convertStringToRemittanceData(data: string):RemittanceData{
-  	return JSON.parse(data);
   }
 
   getNote(id:number):RemittanceData{
@@ -32,8 +26,8 @@ export class RemittanceDataService {
     let storage = localStorage.getItem(key)
     if (storage){
   	 let storage = JSON.parse(localStorage.getItem(key));
-     if (storage[id]){
-    	 console.log(`Из хранилища ${key} отдана запись №${id}`)
+      if (storage[id]){
+    	 //console.log(`Из хранилища ${key} отдана запись №${id}`)
        return storage[id] as RemittanceData
       }
     }
@@ -43,7 +37,7 @@ export class RemittanceDataService {
 
   getHistory():RemittanceData[]{
   	let key = this.storageName;
-  	console.log(`Из хранилища ${key} отдана вся история`)
+  	//console.log(`Из хранилища ${key} отдана вся история`)
   	return JSON.parse(localStorage.getItem(key)) as RemittanceData[]
   }
 
@@ -51,13 +45,13 @@ export class RemittanceDataService {
   	let key = this.storageName;
   	let storage = JSON.parse(localStorage.getItem(key));
   	let newStorage = [...storage.slice(0,id), ...storage.slice(id + 1)]
-  	console.log(`Из хранилища ${key} удалена запись ${id}`)
+  	//console.log(`Из хранилища ${key} удалена запись ${id}`)
   	localStorage.setItem(key, JSON.stringify(newStorage));
   }
 
   clearHistory():void{
   	localStorage.clear();
-  	console.log("Хранилище очищено")
+  	//console.log("Хранилище очищено")
   }
 
 }
